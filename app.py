@@ -67,9 +67,10 @@ if ingredients_img is not None:
                 if item[1] > 0:
                     positive_ele.append([key, item[0]])
 
-        st.write(negative_ele)
-        st.write(positive_ele)
-        st.info('The verdict says eatable', icon="⚖️")
+        if len(negative_ele) > 3:
+            st.info('The verdict says not good to eat', icon="⚖️")
+        else:
+            st.info('The verdict says good to eat', icon="⚖️")
 
         col1, col2, col3 = st.columns(3)
         col1.metric("Product", "Sodium")
@@ -128,12 +129,11 @@ if ingredients_img is not None:
                     st.write(
                         "Product may contain gluten, nuts, sesame seed, milk, soya and mustard seed.")
                     break
+        
+        for i in negative_ele:
+            with st.expander("❌ "+i[0]):
+                st.write(i[1])
 
-        with st.expander("❌ Maltodextrin"):
-            st.write("""
-                Description\n\n Maltodextrin has an even higher glycemic index (GI) than table sugar. This means that maltodextrin can cause a sharp increase, or spike, in people’s blood sugar shortly after they eat foods that contain it.\n\n Side Effects\n\n can increase a person’s risk of high cholesterol, weight gain, and type 2 diabetes.
-            """)
-        with st.expander("✅ Maltodextrin"):
-            st.write("""
-                Description\n\n Maltodextrin has an even higher glycemic index (GI) than table sugar. This means that maltodextrin can cause a sharp increase, or spike, in people’s blood sugar shortly after they eat foods that contain it.\n\n Side Effects\n\n can increase a person’s risk of high cholesterol, weight gain, and type 2 diabetes.
-            """)
+        for i in positive_ele:
+            with st.expander("✅ "+i[0]):
+                st.write(i[1])
