@@ -72,7 +72,6 @@ if ingredients_img is not None:
         st.image(tab_dis_img)
         reader = easyocr.Reader(['en'])
         result_tab = reader.readtext(bytes_data, detail=0)
-        st.write(result_tab)
 
         result_tab = " ".join(result_tab)
         result_tab = result_tab.lower()
