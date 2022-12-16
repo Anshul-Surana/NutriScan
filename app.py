@@ -53,6 +53,7 @@ if ingredients_img is not None:
         st.image(tab_dis_img)
         reader = easyocr.Reader(['en'])
         result_tab = reader.readtext(bytes_data, detail=0)
+        sodium_not_found=False
         try:
             sodium_line = [
                 int(ind+1) for ind, val in enumerate(result_tab) if "sodium" in val.lower()]
